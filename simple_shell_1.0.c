@@ -1,6 +1,10 @@
 #include "shell.h"
 #include <string.h>
 #include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 /**
  * main4 - Simple shell program
  *
@@ -12,6 +16,9 @@ int main4(void)
 {
 	char *line = NULL;
 	size_t len = 0;
+	char *token;
+	char *args[1024];
+	int arg_count = 0;
 
 	while (1)
 	{
@@ -19,55 +26,74 @@ int main4(void)
 		if (getline(&line, &len, stdin) == -1)
 			break; /* Exit on Ctrl+D or EOF */
 
-		/* Remove trailing newline character */
 		line[strcspn(line, "\n")] = '\0';
 
-		/* Handle 'exit' built-in command */
-		if (strcmp(line, "exit") == 0)
-		{
-			free(line);
-			exit(0);
-		}
-		/* Handle 'env' built-in command */
-		else if (strcmp(line, "env") == 0)
-		{
-			char **env = environ;
+		/*
+		* char *token;
+		char *args[1024];
+		int arg_count = 0;*/
 
-			while (*env)
+		token = strtok(line, " ");
+		while (token != NULL)
+		{
+			args[arg_count] = token;
+			arg_count++;
+			token = strtok(NULL, " ");
+		}
+
+		args[arg_count] = NULL;
+
+		if (arg_count > 0)
+		{
+			if (strcmp(args[0], "exit") == 0)
 			{
-				printf("%s\n", *env);
-				env++;
+				free(line);
+				exit(0);
 			}
-		}
-		else
-		{
-			/* Tokenize the command line */
-			char *token;
-
-			token = strtok(line, " ");
-
-			while (token != NULL)
+			else if (strcmp(args[0], "env") == 0)
 			{
-				/* Search for the command in the PATH */
-				char *command_path = token; /* For simplicity, assume the token is the command name */
+				char **env = environ;
 
-				/* Check if the command exists in PATH before calling fork */
+				while (*env)
+				{
+					printf("%s\n", *env);
+					env++;
+				}
+			}
+			else
+			{
+				char *command_path = args[0];
+
 				if (access(command_path, F_OK) == 0)
 				{
-					/* Execute the command with arguments */
-					/* Display output */
-					printf("Command: %s\n", token);
+					pid_t child_pid = fork();
+
+					if (child_pid == -1)
+					{
+						perror("fork");
+						exit(EXIT_FAILURE);
+					}
+					if (child_pid == 0)
+					{
+						execve(command_path, args, environ);
+						perror("execve");
+						exit(EXIT_FAILURE);
+					}
+					else
+					{
+						int status;
+
+						wait(&status);
+					}
 				}
 				else
 				{
-					printf("Command not found: %s\n", token);
+					printf("Command not found: %s\n", args[0]);
 				}
-
-				token = strtok(NULL, " ");
 			}
 		}
 
-		free(line);
+		free(line); /* Free allocated memory */
 	}
 
 	return (0);

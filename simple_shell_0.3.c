@@ -20,8 +20,8 @@ int main2(void)
 	pid_t child_pid;
 	int status;
 
-	char *path = "../usr/bin";
-	setenv("../usr/bin", path, 1);
+	char *path = "../bin";
+	setenv("../bin", path, 1);
 
 	while (1)
 	{

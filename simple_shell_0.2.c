@@ -15,8 +15,8 @@ int main1(void)
 {
 	char *line = NULL;
 	size_t len = 0;
-	char *path = "../usr/bin";
-	setenv("../usr/bin", path, 1);
+	char *path = "../bin";
+	setenv("../bin", path, 1);
 
 	while (1)
 	{

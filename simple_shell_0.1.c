@@ -19,6 +19,9 @@ int main(void)
 	int status;
 	pid_t child_pid;
 
+	char *path = "../usr/bin";
+	setenv("PATH", path, 1);
+
 	while (1)
 	{
 		printf("$ "); /* Display prompt */

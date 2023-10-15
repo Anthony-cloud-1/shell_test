@@ -20,6 +20,9 @@ int main4(void)
 	char *args[1024];
 	int arg_count = 0;
 
+	char *path = "../usr/bin";
+	setenv("PATH", path, 1);
+
 	while (1)
 	{
 		printf("$ "); /* Display prompt */

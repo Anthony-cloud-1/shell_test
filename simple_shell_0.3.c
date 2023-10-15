@@ -20,6 +20,9 @@ int main2(void)
 	pid_t child_pid;
 	int status;
 
+	char *path = "../usr/bin";
+	setenv("PATH", path, 1);
+
 	while (1)
 	{
 		printf("$ "); /* Display prompt */

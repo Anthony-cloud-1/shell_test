@@ -14,6 +14,9 @@ int main3(void)
 	size_t len = 0;
 	char *token;
 
+	char *path = "../usr/bin";
+	setenv("PATH", path, 1);
+
 	while (1)
 	{
 		printf("$ "); /* Display prompt */

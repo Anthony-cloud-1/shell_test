@@ -21,7 +21,7 @@ int main2(void)
 	int status;
 
 	char *path = "../usr/bin";
-	setenv("PATH", path, 1);
+	setenv("../usr/bin", path, 1);
 
 	while (1)
 	{

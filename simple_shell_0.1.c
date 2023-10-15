@@ -19,7 +19,7 @@ int main(void)
 	int status;
 	pid_t child_pid;
 
-	char *path = getenv("PATH");
+	/*char *path = getenv("PATH");*/
 	setenv("PATH", "/bin:/usr/bin", 1);
 
 	while (1)

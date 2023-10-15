@@ -20,7 +20,7 @@ int main4(void)
 	char *args[1024];
 	int arg_count = 0;
 
-	char *path = getenv("PATH");
+	/*char *path = getenv("PATH");*/
 	setenv("PATH", "/bin:/usr/bin", 1);
 
 	while (1)

@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "shell.h"
+#include <libgen.h>
 #include<sys/types.h>
 #include<sys/wait.h>
 /**
@@ -17,16 +18,16 @@ void executeCommand(char **commandTokens)
 
 	if (childPid == -1)
 	{
-		printf("\nFailed forking child process..");
+		fprintf(stderr, "%s: Failed forking child process\n", basename(commandTokens[0]));
 		return;
 	}
 	else if (childPid == 0)
 	{
 		if (execvp(commandTokens[0], commandTokens) < 0)
 		{
-			printf("\nCould not execute the command..");
+			fprintf(stderr, "%s: not found\n", basename(commandTokens[0]));
 		}
-		exit(0);
+		exit(EXIT_FAILURE);
 	}
 	else
 	{

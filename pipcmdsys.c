@@ -3,8 +3,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include "shell.h"
+#include <libgen.h>
 #include<sys/types.h>
 #include<sys/wait.h>
+
 /**
  * executePipedCommands - execute piped cmds
  * @firstCommand: 1st cmd
@@ -21,13 +23,13 @@ void executePipedCommands(char **firstCommand, char **secondCommand)
 
 	if (pipe(pipefd) < 0)
 	{
-		printf("\nError: Pipe initialization failed");
+		fprintf(stderr, "%s: Pipe initialization failed\n", basename(firstCommand[0]));
 		return;
 	}
 	child1 = fork();
 	if (child1 < 0)
 	{
-		printf("\nError: Forking child process failed");
+		fprintf(stderr, "%s: Forking child process failed\n", basename(firstCommand[0]));
 		return;
 	}
 
@@ -43,8 +45,8 @@ void executePipedCommands(char **firstCommand, char **secondCommand)
 
 		if (execvp(firstCommand[0], firstCommand) < 0)
 		{
-			printf("\nError: Failed to execute the first command");
-			exit(0);
+			fprintf(stderr, "%s: Failed to execute the first command\n", basename(firstCommand[0]));
+			exit(EXIT_FAILURE);
 		}
 	}
 	else
@@ -56,7 +58,7 @@ void executePipedCommands(char **firstCommand, char **secondCommand)
 
 		if (child2 < 0)
 		{
-			printf("\nError: Forking child process failed");
+			fprintf(stderr, "%s: Forking child process failed\n", basename(firstCommand[0]));
 			return;
 		}
 
@@ -71,8 +73,8 @@ void executePipedCommands(char **firstCommand, char **secondCommand)
 			close(pipefd[0]);
 			if (execvp(secondCommand[0], secondCommand) < 0)
 			{
-				printf("\nError: Failed to execute the second command");
-				exit(0);
+				fprintf(stderr, "%s: Failed to execute the second command\n", basename(secondCommand[0]));
+				exit(EXIT_FAILURE);
 			}
 		}
 		else

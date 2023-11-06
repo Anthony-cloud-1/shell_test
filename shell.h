@@ -4,6 +4,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char *custom_getline(void);
+int findPipe(char *input, char **pipedCommands);
+void splitBySpace(char *input, char **parsedTokens);
+int processInput(char *input, char **parsed, char **parsedPipe);
+int handleInternalCommands(char **parsedInput);
+void executeCommand(char **commandTokens);
+void executePipedCommands(char **firstCommand, char **secondCommand);
+void shellHelp(void);
+int takeInput(char *userInput);
 
 #endif /* SHELL_H */

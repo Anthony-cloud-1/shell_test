@@ -1,6 +1,5 @@
-#!/bin/sh
+# This file lists all individuals having contributed content to the repository.
+# For how it is generated, see `hack/generate-authors.sh`.
 
-git shortlog -se \
-  | perl -spe 's/^\s+\d+\s+//' \
-  | sed -e '/^CommitSyncScript.*$/d' \
-  > AUTHORS
+Anthony-cloud-1 <tonysack13@gmail.com>
+Fomonyuy-Claire <fomonyuymarie2000@gmail.com>

@@ -22,9 +22,9 @@ int takeInput(char *userInput)
 	if (fgets(inputBuffer, sizeof(inputBuffer), stdin) == NULL)
 	{
 		/*
-		 * Handle the "end of file" condition (Ctrl+D)
-		 */
-		printf("\nexit\n");
+		* Handle the "end of file" condition (Ctrl+D)
+		*/
+		printf("exit\n");
 		exit(EXIT_SUCCESS);
 	}
 

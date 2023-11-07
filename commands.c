@@ -30,7 +30,7 @@ int handleInternalCommands(char **parsedInput)
 	switch (commandMatch)
 	{
 		case 1:
-			printf("\nexit\n");
+			printf("exit\n");
 			exit(0);
 		case 2:
 			chdir(parsedInput[1]);

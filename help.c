@@ -16,5 +16,5 @@ void shellHelp(void)
 	printf("\n>exit");
 	printf("\n>all other general commands available in UNIX shell");
 	printf("\n>pipe handling");
-	printf("\n>improper space handling");
+	printf("\n>improper space handling\n");
 }

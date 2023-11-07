@@ -82,6 +82,8 @@ void executePipedCommands(char **firstCommand, char **secondCommand)
 			/*
 			 * Parent executing, waiting for two children
 			 */
+			close(pipefd[0]);
+			close(pipefd[1]);
 			wait(NULL);
 			wait(NULL);
 		}

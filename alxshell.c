@@ -22,6 +22,7 @@ int main(void)
 
 	while (1)
 	{
+		printf("$ ");
 
 		if (takeInput(inputCommand))
 			continue;

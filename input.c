@@ -15,7 +15,7 @@ int takeInput(char *userInput)
 {
 	char inputBuffer[MAX_INPUT_LENGTH];
 
-	printf("\n$ ");
+	printf("$ ");
 
 	if (fgets(inputBuffer, sizeof(inputBuffer), stdin) == NULL)
 	{

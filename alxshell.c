@@ -19,19 +19,18 @@ int main(void)
 	char *parsedCommandsPiped[CMDLMT];
 	int commandType = 0;
 
-
 	while (1)
 	{
 		printf("$ ");
 
 		if (takeInput(inputCommand))
-			continue;
-		/*
+			break;
+		 /*
 		 *  Process the input
 		 */
 
 		commandType = processInput(inputCommand, parsedCommands, parsedCommandsPiped);
-		/*
+		 /*
 		 * commandType returns zero if there is no command
 		 * or it is a built-in command,
 		 * 1 if it is a simple command
@@ -45,4 +44,5 @@ int main(void)
 			executePipedCommands(parsedCommands, parsedCommandsPiped);
 	}
 	return (0);
+
 }

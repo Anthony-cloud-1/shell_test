@@ -16,8 +16,8 @@ int takeInput(char *userInput)
 	char inputBuffer[MAX_INPUT_LENGTH];
 
 	/*
-	 * printf("$ ");
-	 */
+	printf("$ ");
+	*/
 
 	if (fgets(inputBuffer, sizeof(inputBuffer), stdin) == NULL)
 	{
@@ -25,8 +25,10 @@ int takeInput(char *userInput)
 		* Handle the "end of file" condition (Ctrl+D)
 		*
 		printf("exit\n");
-		*/
+		
 		exit(EXIT_SUCCESS);
+		*/
+		return (1);
 	}
 
 	/*

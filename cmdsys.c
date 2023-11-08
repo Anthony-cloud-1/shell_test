@@ -30,7 +30,7 @@ void executeCommand(char **commandTokens)
 		
 		if (execvp(commandTokens[0], commandTokens) < 0)
 		{
-			fprintf(stderr, "./hsh: 1: %s: not found\n", basename(commandTokens[0]));
+			fprintf(stderr, "%s: not found\n", basename(commandTokens[0]));
 		}
 		exit(EXIT_FAILURE);
 	}

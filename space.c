@@ -14,6 +14,7 @@
  */
 void splitBySpace(char *input, char **parsedTokens)
 {
+
 	int i;
 
 	for (i = 0; i < LETLMT; i++)
@@ -25,4 +26,5 @@ void splitBySpace(char *input, char **parsedTokens)
 		if (strlen(parsedTokens[i]) == 0)
 			i--;
 	}
+
 }

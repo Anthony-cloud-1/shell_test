@@ -9,16 +9,16 @@
 /**
  * executeCommand - execute user cmds
  * @commandTokens: cmd tokens
- *
+ * @programName: to display prog name
  * Return: void
  */
-void executeCommand(char **commandTokens)
+void executeCommand(char **commandTokens, char *programName)
 {
 	pid_t childPid = fork();
 
 	if (childPid == -1)
 	{
-		fprintf(stderr, "%s: Failed forking child process\n", basename(commandTokens[0]));
+		fprintf(stderr, "%s: Failed forking child process\n", programName);
 		return;
 	}
 	else if (childPid == 0)
@@ -30,7 +30,7 @@ void executeCommand(char **commandTokens)
 		
 		if (execvp(commandTokens[0], commandTokens) < 0)
 		{
-			fprintf(stderr, "%s: not found\n", basename(commandTokens[0]));
+			fprintf(stderr, "%s: 1: %s: not found\n", programName, commandTokens[0]);
 		}
 		exit(EXIT_FAILURE);
 	}

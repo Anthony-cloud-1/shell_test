@@ -8,10 +8,10 @@
 /**
  * takeInput - take user input
  * @userInput: user input
- *
+ * @inputFile: input file
  * Return: Always 0
  */
-int takeInput(char *userInput)
+int takeInput(char *userInput, FILE *inputFile)
 {
 	char inputBuffer[MAX_INPUT_LENGTH];
 
@@ -19,7 +19,7 @@ int takeInput(char *userInput)
 	printf("$ ");
 	*/
 
-	if (fgets(inputBuffer, sizeof(inputBuffer), stdin) == NULL)
+	if (fgets(inputBuffer, sizeof(inputBuffer), inputFile) == NULL)
 	{
 		/*
 		* Handle the "end of file" condition (Ctrl+D)

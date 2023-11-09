@@ -27,7 +27,13 @@ void executeCommand(char **commandTokens, char *programName)
 		 * Redirect stderr to stdout in the child process
 		 */
 		dup2(STDOUT_FILENO, STDERR_FILENO);
-		
+
+		if (commandTokens[0][0] == '"' && commandTokens[0][strlen(commandTokens[0]) - 1] == '"')
+		{
+			memmove(commandTokens[0], commandTokens[0] + 1, strlen(commandTokens[0]) - 2);
+			commandTokens[0][strlen(commandTokens[0]) - 2] = '\0';
+		}
+
 		if (execvp(commandTokens[0], commandTokens) < 0)
 		{
 			fprintf(stderr, "%s: 1: %s: not found\n", programName, commandTokens[0]);

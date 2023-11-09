@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "shell.h"
+
+#define CMDLMT 100 /* max commands */
 /**
  * processInput - processes user input
  * @input: user input

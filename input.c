@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -29,6 +30,13 @@ int takeInput(char *userInput, FILE *inputFile)
 		exit(EXIT_SUCCESS);
 		*/
 		return (1);
+	}
+
+	if (inputBuffer[0] == '#')
+	{
+	/*Skip/commented line
+	 */
+		return(1);
 	}
 
 	/*

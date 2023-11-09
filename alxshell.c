@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 	/*
 	 * Non-interactive mode: open the file specified as an argument
 	 */
-		inputFile = fopen(argv[1], "r");
+		inputFile = fopen(argv[1], "r+");
 		if (inputFile == NULL)
 		{
 			perror("fopen");

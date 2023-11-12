@@ -19,7 +19,7 @@ void splitBySpace(char *input, char **parsedTokens)
 
 	for (i = 0; i < LETLMT; i++)
 	{
-		parsedTokens[i] = strsep(&input, " ");
+		parsedTokens[i] = strsep(&input, " ;");
 
 		if (parsedTokens[i] == NULL)
 			break;

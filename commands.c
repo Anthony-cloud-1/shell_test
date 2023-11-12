@@ -36,7 +36,17 @@ int handleInternalCommands(char **parsedInput)
 			*/
 			if (parsedInput[1] != NULL)
 			{
+				char *endptr;
+				int exitStatus = strtol(parsedInput[1], &endptr, 10);
+
+				if (*endptr != '\0')
+				{
+					fprintf(stderr, "./hsh: 1: exit: Illegal number: %s\n", parsedInput[1]);
+					exit(EXIT_FAILURE);
+				}
+				/*
 				int exitStatus = atoi(parsedInput[1]);
+				*/
 				exit(exitStatus);
 			} 
 			else
